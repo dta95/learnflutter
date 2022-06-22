@@ -6,7 +6,6 @@ bool KTSNT(int x) {
       if (x % i == 0) {
         return false;
       }
-      return true;
     }
   }
   return true;
