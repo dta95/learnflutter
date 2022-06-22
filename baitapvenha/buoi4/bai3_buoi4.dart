@@ -22,6 +22,7 @@ void inSoNguyenTo(int n){
 void main() {
  // runApp(const MyApp());
 
-  int n=100;
-inSoNguyenTo(n);
+  inSoNguyenTo(20);
+  inSoNguyenTo(100);
+  inSoNguyenTo(1000);
 }
