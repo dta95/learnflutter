@@ -18,7 +18,6 @@ abstract class lopHoc{
    List <String> tenLopHoc;
   hocVien(this.ten, this.tenLopHoc);
 }
-
 abstract class buildAdroid{
    void buildAdroidApp(){}
 }
@@ -193,24 +192,19 @@ class web implements lopHoc,buildWed{
   }
 
 }
-
 // random tên cho hv
 String RandomNameHV(String tapTen) {
   var r = Random();
   return List.generate(1, (index) => tapTen[r.nextInt(tapTen.length)]).join();
 }
 // kiểm tra tên học viên trước khi thêm
-
 String KTTHV(List a,String c){
   for(int i=0;i <a.length;i++){
        c = c.replaceAll(a[i], "");
   }
   return c;
 }
-
-
 // hàm kiểm tra học viên và thêm hv vào lớp
-
 void KTHV(Map a, List b, String c){
   var key;
   List l = a.values.toList();
@@ -273,7 +267,6 @@ void main() {
   print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien),rdthv)}");
   print( "Danh sách học viên Adroid:\n ${ classAdroid.addHV(classAdroid.remainMembers(hocvien),rdthv)}" );
   print( "Danh sách học viên Wed:\n ${ classWed.addHV(classWed.remainMembers(hocvien),rdthv)}" );
-
 
 
 }
