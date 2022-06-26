@@ -256,16 +256,16 @@ void main() {
 
   // kiếm tra số học viên còn thiếu
   print("Số học viên còn thiếu lớp Flutter: ${classFlutter.remainMembers(hocvien)} ");
-  print("Số học viên còn thiếu lớp ios: ${classIos.remainMembers(hocvien)} ");
   print("Số học viên còn thiếu lớp adroid: ${  classAdroid.remainMembers(hocvien)} ");
+  print("Số học viên còn thiếu lớp ios: ${classIos.remainMembers(hocvien)} ");
   print("Số học viên còn thiếu lớp wed: ${classWed.remainMembers(hocvien)} ");
 
 
 
 //in danh sách học viên của lớp
   print( "Danh sách học viên Flutter:\n ${ classFlutter.addHV(classFlutter.remainMembers(hocvien),rdthv)}"  );
-  print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien),rdthv)}");
   print( "Danh sách học viên Adroid:\n ${ classAdroid.addHV(classAdroid.remainMembers(hocvien),rdthv)}" );
+  print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien),rdthv)}");
   print( "Danh sách học viên Wed:\n ${ classWed.addHV(classWed.remainMembers(hocvien),rdthv)}" );
 
 
