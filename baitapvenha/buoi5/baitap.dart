@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 
-// lớp từ tượng lopHoc
- class lopHoc{
+// lớp trừ tượng tượng lopHoc
+abstract class lopHoc{
   late String tenLopHoc;
   late int soHocVien;
   late List<String> DSHV;
 
-  List <String> danhSachHocVien(List<String> DSHV){
-    return DSHV;
-  }
   int remainMembers( Map a ){
   return 0;
   }
+
+
 }
 
 //khởi tạo lớp hocVien
@@ -22,7 +21,6 @@ import 'dart:math';
    String ten;
    List <String> tenLopHoc;
   hocVien(this.ten, this.tenLopHoc);
-  
 }
 
 abstract class buildAdroid{
@@ -38,6 +36,7 @@ abstract class buildDKApp{
   void buildDKAppp(){}
 }
 
+// Khởi tạo lớp flutter
 class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
   @override
   int soHocVien =11;
@@ -55,11 +54,6 @@ class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
   @override
   void buildWedApp() {}
 
-  @override
-  List<String> danhSachHocVien(List<String> DSHV) {
-
-    throw UnimplementedError();
-  }
   @override
   int remainMembers(Map a){
     int tinhSHV= 0;
@@ -84,6 +78,7 @@ class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
   }
 
 }
+//khởi tạo lớp ios
 class ios implements lopHoc,buildIos{
   @override
   int soHocVien =13;
@@ -94,11 +89,6 @@ class ios implements lopHoc,buildIos{
   @override
   void buildIosApp(){}
 
-  @override
-  List<String> danhSachHocVien(List<String> DSHV) {
-
-    throw UnimplementedError();
-  }
 
   @override
   int remainMembers(Map a){
@@ -122,6 +112,7 @@ class ios implements lopHoc,buildIos{
     return DSHV;
   }
 }
+//khởi tạo lớp adroid
 class adroid implements lopHoc,buildAdroid{
   @override
   int soHocVien =12;
@@ -135,11 +126,6 @@ class adroid implements lopHoc,buildAdroid{
   @override
   void buildAdroidApp() {}
 
-  @override
-  List<String> danhSachHocVien(List<String> DSHV) {
-
-    throw UnimplementedError();
-  }
 
   @override
   int remainMembers(Map a){
@@ -164,6 +150,7 @@ class adroid implements lopHoc,buildAdroid{
   }
 
 }
+//Khởi tạo lớp web
 class web implements lopHoc,buildWed{
   @override
   int soHocVien =14;
@@ -177,11 +164,6 @@ class web implements lopHoc,buildWed{
   @override
   void buildWedApp() {}
 
-  @override
-  List<String> danhSachHocVien(List<String> DSHV) {
-
-    throw UnimplementedError();
-  }
 
   @override
   int remainMembers(Map a){
