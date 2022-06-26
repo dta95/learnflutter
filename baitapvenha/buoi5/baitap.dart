@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-
 // lớp trừ tượng tượng lopHoc
 abstract class lopHoc{
   late String tenLopHoc;
@@ -12,10 +11,7 @@ abstract class lopHoc{
   int remainMembers( Map a ){
   return 0;
   }
-
-
 }
-
 //khởi tạo lớp hocVien
  class hocVien{
    String ten;
@@ -69,12 +65,14 @@ class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
    return tinhSHV;
   }
 
-  List addHV(int a){
-
-    for(int i=0;i< a ;i++ ){
-      DSHV.add(RandomNameHV(1));
+  List addHV(int a,String tapTen){
+    String newTenTep = KTTHV(DSHV,tapTen);
+    for(int i=1;i<= a ;i++ ){
+      var t=RandomNameHV(newTenTep);
+      DSHV.add(t);
+      newTenTep = newTenTep.replaceAll(t, "");
     }
-    return DSHV;
+    return  DSHV;
   }
 
 }
@@ -104,12 +102,14 @@ class ios implements lopHoc,buildIos{
     tinhSHV =soHocVien -tinhSHV;
    return tinhSHV;
   }
-  List addHV(int a){
-
-    for(int i=0;i< a ;i++ ){
-      DSHV.add(RandomNameHV(1));
+  List addHV(int a,String tapTen){
+    String newTenTep = KTTHV(DSHV,tapTen);
+    for(int i=1;i<= a ;i++ ){
+      var t=RandomNameHV(newTenTep);
+      DSHV.add(t);
+      newTenTep = newTenTep.replaceAll(t, "");
     }
-    return DSHV;
+    return  DSHV;
   }
 }
 //khởi tạo lớp adroid
@@ -141,14 +141,16 @@ class adroid implements lopHoc,buildAdroid{
     tinhSHV =soHocVien -tinhSHV;
     return tinhSHV;
   }
-  List addHV(int a){
 
-    for(int i=0;i< a ;i++ ){
-      DSHV.add(RandomNameHV(1));
+  List addHV(int a,String tapTen){
+    String newTenTep = KTTHV(DSHV,tapTen);
+    for(int i=1;i<= a ;i++ ){
+      var t=RandomNameHV(newTenTep);
+      DSHV.add(t);
+      newTenTep = newTenTep.replaceAll(t, "");
     }
-    return DSHV;
+    return  DSHV;
   }
-
 }
 //Khởi tạo lớp web
 class web implements lopHoc,buildWed{
@@ -179,22 +181,33 @@ class web implements lopHoc,buildWed{
     tinhSHV =soHocVien -tinhSHV;
    return tinhSHV;
   }
-  List addHV(int a){
 
-    for(int i=0;i< a ;i++ ){
-      DSHV.add(RandomNameHV(1));
+  List addHV(int a,String tapTen){
+    String newTenTep = KTTHV(DSHV,tapTen);
+    for(int i=1;i<= a ;i++ ){
+      var t=RandomNameHV(newTenTep);
+      DSHV.add(t);
+      newTenTep = newTenTep.replaceAll(t, "");
     }
-    return DSHV;
+    return  DSHV;
   }
 
 }
 
 // random tên cho hv
-String RandomNameHV(int len) {
+String RandomNameHV(String tapTen) {
   var r = Random();
-  const _chars = 'QWERTYUIOPASDFGHJKLZXCVBNM';
-  return List.generate(len, (index) => _chars[r.nextInt(_chars.length)]).join();
+  return List.generate(1, (index) => tapTen[r.nextInt(tapTen.length)]).join();
 }
+// kiểm tra tên học viên trước khi thêm
+
+String KTTHV(List a,String c){
+  for(int i=0;i <a.length;i++){
+       c = c.replaceAll(a[i], "");
+  }
+  return c;
+}
+
 
 // hàm kiểm tra học viên và thêm hv vào lớp
 
@@ -237,7 +250,8 @@ void main() {
     E.ten: E.tenLopHoc,
     F.ten: F.tenLopHoc,
   };
-
+//  khởi tạo tập tên hv
+  String rdthv= "QWERTYUIOPASDFGHJKLZXCVBNM";
   // thêm học viên vào lớp
 
   KTHV(hocvien, classFlutter.DSHV, "Fluter");
@@ -254,10 +268,12 @@ void main() {
 
 
 
-// in danh sách học viên của lớp
-  print( "Danh sách học viên Flutter:\n ${ classFlutter.addHV(classFlutter.remainMembers(hocvien))}"  );
-  print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien))}");
-  print( "Danh sách học viên Adroid:\n ${ classAdroid.addHV(classAdroid.remainMembers(hocvien))}" );
-  print( "Danh sách học viên Wed:\n ${ classWed.addHV(classWed.remainMembers(hocvien))}" );
+//in danh sách học viên của lớp
+  print( "Danh sách học viên Flutter:\n ${ classFlutter.addHV(classFlutter.remainMembers(hocvien),rdthv)}"  );
+  print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien),rdthv)}");
+  print( "Danh sách học viên Adroid:\n ${ classAdroid.addHV(classAdroid.remainMembers(hocvien),rdthv)}" );
+  print( "Danh sách học viên Wed:\n ${ classWed.addHV(classWed.remainMembers(hocvien),rdthv)}" );
+
+
 
 }
