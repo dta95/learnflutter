@@ -169,10 +169,10 @@ void main() {
   String rdthv= "QWERTYUIOPASDFGHJKLZXCVBNM";
 
   // thêm học viên vào lớp
-  KTHV(hocvien, classFlutter.DSHV, "Flutter");
-  KTHV(hocvien, classIos.DSHV, "ios");
-  KTHV(hocvien, classAdroid.DSHV, "adroid");
-  KTHV(hocvien, classWeb.DSHV, "web");
+  KTHV(hocvien, classFlutter.DSHV, classFlutter.tenLopHoc);
+  KTHV(hocvien, classIos.DSHV, classIos.tenLopHoc);
+  KTHV(hocvien, classAdroid.DSHV, classAdroid.tenLopHoc);
+  KTHV(hocvien, classWeb.DSHV, classWeb.tenLopHoc);
 
   // gán số hs còn tiếu
   var  hstFlutter =  remainMembers(hocvien,classFlutter.soHocVien,classFlutter.tenLopHoc);
