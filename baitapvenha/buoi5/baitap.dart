@@ -7,10 +7,6 @@ abstract class lopHoc{
   late String tenLopHoc;
   late int soHocVien;
   late List<String> DSHV;
-
-  int remainMembers( Map a ){
-  return 0;
-  }
 }
 //khởi tạo lớp hocVien
  class hocVien{
@@ -18,21 +14,22 @@ abstract class lopHoc{
    List <String> tenLopHoc;
   hocVien(this.ten, this.tenLopHoc);
 }
+// lớp trừ tượng build app
 abstract class buildAdroid{
    void buildAdroidApp(){}
 }
 abstract class buildIos{
   void buildIosApp(){}
 }
-abstract class buildWed{
-  void buildWedApp(){}
+abstract class buildWeb{
+  void buildWebApp(){}
 }
 abstract class buildDKApp{
   void buildDKAppp(){}
 }
 
 // Khởi tạo lớp flutter
-class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
+class Flutter implements lopHoc,buildAdroid,buildIos,buildWeb,buildDKApp {
   @override
   int soHocVien =11;
   @override
@@ -47,22 +44,7 @@ class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
   @override
   void buildIosApp() {}
   @override
-  void buildWedApp() {}
-
-  @override
-  int remainMembers(Map a){
-    int tinhSHV= 0;
-    List l = a.values.toList();
-    for(int i=0;i<l.length;i++){
-      for(int j=0;j< l[i].length;j++){
-        if(l[i][j] == "Fluter"){
-          tinhSHV++;
-        }
-      }
-    }
-    tinhSHV =soHocVien -tinhSHV;
-   return tinhSHV;
-  }
+  void buildWebApp() {}
 
 }
 //khởi tạo lớp ios
@@ -76,21 +58,6 @@ class ios implements lopHoc,buildIos{
   @override
   void buildIosApp(){}
 
-
-  @override
-  int remainMembers(Map a){
-    int tinhSHV= 0;
-    List l = a.values.toList();
-    for(int i=0;i<l.length;i++){
-      for(int j=0;j< l[i].length;j++){
-        if(l[i][j] == "ios"){
-          tinhSHV++;
-        }
-      }
-    }
-    tinhSHV =soHocVien -tinhSHV;
-   return tinhSHV;
-  }
 }
 //khởi tạo lớp adroid
 class adroid implements lopHoc,buildAdroid{
@@ -106,26 +73,10 @@ class adroid implements lopHoc,buildAdroid{
   @override
   void buildAdroidApp() {}
 
-
-  @override
-  int remainMembers(Map a){
-    int tinhSHV= 0;
-    List l = a.values.toList();
-    for(int i=0;i<l.length;i++){
-      for(int j=0;j< l[i].length;j++){
-        if(l[i][j] == "adroid"){
-          tinhSHV++;
-        }
-      }
-    }
-    tinhSHV =soHocVien -tinhSHV;
-    return tinhSHV;
-  }
-
 }
 
 //Khởi tạo lớp web
-class web implements lopHoc,buildWed{
+class web implements lopHoc,buildWeb{
   @override
   int soHocVien =14;
 
@@ -136,23 +87,7 @@ class web implements lopHoc,buildWed{
   List<String> DSHV =[];
 
   @override
-  void buildWedApp() {}
-
-
-  @override
-  int remainMembers(Map a){
-    int tinhSHV= 0;
-    List l = a.values.toList();
-    for(int i=0;i<l.length;i++){
-      for(int j=0;j< l[i].length;j++){
-        if(l[i][j] == "wed"){
-          tinhSHV++;
-        }
-      }
-    }
-    tinhSHV =soHocVien -tinhSHV;
-   return tinhSHV;
-  }
+  void buildWebApp() {}
 
 }
 
@@ -180,7 +115,6 @@ void KTHV(Map a, List b, String c){
       }
     }
   }
-
 }
 // hàm add thành viên cho lớp
 List addHV(int a,String tapTen,List ds){
@@ -193,23 +127,36 @@ List addHV(int a,String tapTen,List ds){
   return ds;
 }
 
+int remainMembers(Map a, int b, String c){
+  int tinhSHV= 0;
+  List l = a.values.toList();
+  for(int i=0;i<l.length;i++){
+    for(int j=0;j< l[i].length;j++){
+      if(l[i][j] == c){
+        tinhSHV++;
+      }
+    }
+  }
+  tinhSHV = b -tinhSHV;
+  return tinhSHV;
+}
+
 void main() {
-  // runApp(const MyApp());
   // khởi tạo đối tượng lớp
   Flutter classFlutter = new Flutter();
   ios classIos = new ios();
   adroid classAdroid = new adroid();
-  web classWed = new web();
+  web classWeb = new web();
 
   // khỏi tạo đối tượng học viên
-  hocVien A = new hocVien('A', ['Fluter']);
-  hocVien B = new hocVien('B', ['Fluter', 'adroid']);
+  hocVien A = new hocVien('A', ['Flutter']);
+  hocVien B = new hocVien('B', ['Flutter', 'adroid']);
   hocVien C = new hocVien('C', ['adroid']);
   hocVien D = new hocVien('D', ['adroid', 'ios']);
   hocVien E = new hocVien('E', ['ios']);
-  hocVien F = new hocVien('F', ['ios', 'wed']);
+  hocVien F = new hocVien('F', ['ios', 'web']);
 
-// khởi tạo danh sách học viên
+  // khởi tạo danh sách học viên
   Map hocvien = {
     A.ten: A.tenLopHoc,
     B.ten: B.tenLopHoc,
@@ -225,23 +172,29 @@ void main() {
   KTHV(hocvien, classFlutter.DSHV, "Fluter");
   KTHV(hocvien, classIos.DSHV, "ios");
   KTHV(hocvien, classAdroid.DSHV, "adroid");
-  KTHV(hocvien, classWed.DSHV, "wed");
+  KTHV(hocvien, classWeb.DSHV, "web");
 
-  // kiếm tra số học viên còn thiếu
-  print("Số học viên còn thiếu lớp Flutter: ${classFlutter.remainMembers(hocvien)} ");
-  print("Số học viên còn thiếu lớp adroid: ${classAdroid.remainMembers(hocvien)} ");
-  print("Số học viên còn thiếu lớp ios: ${classIos.remainMembers(hocvien)} ");
-  print("Số học viên còn thiếu lớp wed: ${classWed.remainMembers(hocvien)} ");
+  // gán số hs còn tiếu
+  var  hstFlutter =  remainMembers(hocvien,classFlutter.soHocVien,classFlutter.tenLopHoc);
+  var  hstAdroid =  remainMembers(hocvien,classAdroid.soHocVien,classAdroid.tenLopHoc);
+  var  hstIos =  remainMembers(hocvien,classIos.soHocVien,classIos.tenLopHoc);
+  var  hstWeb =  remainMembers(hocvien,classWeb.soHocVien,classWeb.tenLopHoc);
+
+
+  print("Số học viên còn thiếu lớp Flutter: $hstFlutter");
+  print("Số học viên còn thiếu lớp Adroid: $hstAdroid");
+  print("Số học viên còn thiếu lớp Ios: $hstIos");
+  print("Số học viên còn thiếu lớp Web: $hstWeb");
 
   //add thành viên lớp
-  addHV(classFlutter.remainMembers(hocvien),rdthv,classFlutter.DSHV);
-  addHV(classAdroid.remainMembers(hocvien),rdthv,classAdroid.DSHV);
-  addHV(classIos.remainMembers(hocvien),rdthv,classIos.DSHV);
-  addHV(classWed.remainMembers(hocvien),rdthv,classWed.DSHV);
+  addHV(hstFlutter,rdthv,classFlutter.DSHV);
+  addHV(hstAdroid,rdthv,classAdroid.DSHV);
+  addHV(hstIos,rdthv,classIos.DSHV);
+  addHV(hstWeb,rdthv,classWeb.DSHV);
 
   //in danh sách học viên của lớp
-    print("Danh sách học viên Wed:\n ${classFlutter.DSHV}");
-    print("Danh sách học viên Wed:\n ${classAdroid.DSHV}");
-    print("Danh sách học viên Wed:\n ${classIos.DSHV}");
-    print("Danh sách học viên Wed:\n ${classWed.DSHV}");
+    print("Danh sách học viên Flutter:\n ${classFlutter.DSHV}");
+    print("Danh sách học viên Adroid:\n ${classAdroid.DSHV}");
+    print("Danh sách học viên Ios:\n ${classIos.DSHV}");
+    print("Danh sách học viên Web:\n ${classWeb.DSHV}");
 }
