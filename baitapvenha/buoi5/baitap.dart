@@ -64,16 +64,6 @@ class Flutter implements lopHoc,buildAdroid,buildIos,buildWed,buildDKApp {
    return tinhSHV;
   }
 
-  List addHV(int a,String tapTen){
-    String newTenTep = KTTHV(DSHV,tapTen);
-    for(int i=1;i<= a ;i++ ){
-      var t=RandomNameHV(newTenTep);
-      DSHV.add(t);
-      newTenTep = newTenTep.replaceAll(t, "");
-    }
-    return  DSHV;
-  }
-
 }
 //khởi tạo lớp ios
 class ios implements lopHoc,buildIos{
@@ -100,15 +90,6 @@ class ios implements lopHoc,buildIos{
     }
     tinhSHV =soHocVien -tinhSHV;
    return tinhSHV;
-  }
-  List addHV(int a,String tapTen){
-    String newTenTep = KTTHV(DSHV,tapTen);
-    for(int i=1;i<= a ;i++ ){
-      var t=RandomNameHV(newTenTep);
-      DSHV.add(t);
-      newTenTep = newTenTep.replaceAll(t, "");
-    }
-    return  DSHV;
   }
 }
 //khởi tạo lớp adroid
@@ -141,16 +122,8 @@ class adroid implements lopHoc,buildAdroid{
     return tinhSHV;
   }
 
-  List addHV(int a,String tapTen){
-    String newTenTep = KTTHV(DSHV,tapTen);
-    for(int i=1;i<= a ;i++ ){
-      var t=RandomNameHV(newTenTep);
-      DSHV.add(t);
-      newTenTep = newTenTep.replaceAll(t, "");
-    }
-    return  DSHV;
-  }
 }
+
 //Khởi tạo lớp web
 class web implements lopHoc,buildWed{
   @override
@@ -181,17 +154,8 @@ class web implements lopHoc,buildWed{
    return tinhSHV;
   }
 
-  List addHV(int a,String tapTen){
-    String newTenTep = KTTHV(DSHV,tapTen);
-    for(int i=1;i<= a ;i++ ){
-      var t=RandomNameHV(newTenTep);
-      DSHV.add(t);
-      newTenTep = newTenTep.replaceAll(t, "");
-    }
-    return  DSHV;
-  }
-
 }
+
 // random tên cho hv
 String RandomNameHV(String tapTen) {
   var r = Random();
@@ -204,7 +168,7 @@ String KTTHV(List a,String c){
   }
   return c;
 }
-// hàm kiểm tra học viên và thêm hv vào lớp
+// hàm kiểm tra học viên trong tệp và thêm hv vào lớp
 void KTHV(Map a, List b, String c){
   var key;
   List l = a.values.toList();
@@ -217,6 +181,16 @@ void KTHV(Map a, List b, String c){
     }
   }
 
+}
+// hàm add thành viên cho lớp
+List addHV(int a,String tapTen,List ds){
+  String newTenTep = KTTHV(ds,tapTen);
+  for(int i=1;i<= a ;i++ ){
+    var t=RandomNameHV(newTenTep);
+    ds.add(t);
+    newTenTep = newTenTep.replaceAll(t, "");
+  }
+  return ds;
 }
 
 void main() {
@@ -244,29 +218,30 @@ void main() {
     E.ten: E.tenLopHoc,
     F.ten: F.tenLopHoc,
   };
-//  khởi tạo tập tên hv
+  //khởi tạo tập tên hv
   String rdthv= "QWERTYUIOPASDFGHJKLZXCVBNM";
-  // thêm học viên vào lớp
 
+  // thêm học viên vào lớp
   KTHV(hocvien, classFlutter.DSHV, "Fluter");
   KTHV(hocvien, classIos.DSHV, "ios");
   KTHV(hocvien, classAdroid.DSHV, "adroid");
   KTHV(hocvien, classWed.DSHV, "wed");
 
-
   // kiếm tra số học viên còn thiếu
   print("Số học viên còn thiếu lớp Flutter: ${classFlutter.remainMembers(hocvien)} ");
-  print("Số học viên còn thiếu lớp adroid: ${  classAdroid.remainMembers(hocvien)} ");
+  print("Số học viên còn thiếu lớp adroid: ${classAdroid.remainMembers(hocvien)} ");
   print("Số học viên còn thiếu lớp ios: ${classIos.remainMembers(hocvien)} ");
   print("Số học viên còn thiếu lớp wed: ${classWed.remainMembers(hocvien)} ");
 
+  //add thành viên lớp
+  addHV(classFlutter.remainMembers(hocvien),rdthv,classFlutter.DSHV);
+  addHV(classAdroid.remainMembers(hocvien),rdthv,classAdroid.DSHV);
+  addHV(classIos.remainMembers(hocvien),rdthv,classIos.DSHV);
+  addHV(classWed.remainMembers(hocvien),rdthv,classWed.DSHV);
 
-
-//in danh sách học viên của lớp
-  print( "Danh sách học viên Flutter:\n ${ classFlutter.addHV(classFlutter.remainMembers(hocvien),rdthv)}"  );
-  print( "Danh sách học viên Adroid:\n ${ classAdroid.addHV(classAdroid.remainMembers(hocvien),rdthv)}" );
-  print( "Danh sách học viên Ios:\n ${ classIos.addHV(classIos.remainMembers(hocvien),rdthv)}");
-  print( "Danh sách học viên Wed:\n ${ classWed.addHV(classWed.remainMembers(hocvien),rdthv)}" );
-
-
+  //in danh sách học viên của lớp
+    print("Danh sách học viên Wed:\n ${classFlutter.DSHV}");
+    print("Danh sách học viên Wed:\n ${classAdroid.DSHV}");
+    print("Danh sách học viên Wed:\n ${classIos.DSHV}");
+    print("Danh sách học viên Wed:\n ${classWed.DSHV}");
 }
