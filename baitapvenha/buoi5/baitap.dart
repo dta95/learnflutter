@@ -50,7 +50,7 @@ class Flutter extends lopHoc implements buildAdroid,buildIos,buildWeb,buildDKApp
 }
 //khởi tạo lớp ios
 class ios extends lopHoc implements buildIos{
-  
+
   ios(super.tenLopHoc, super.soHocVien, super.DSHV);
   @override
   void buildIosApp(){}
@@ -99,19 +99,6 @@ List addHV(int a,String tapTen,List ds){
   return ds;
 }
 
-int remainMembers(Map a, int b, String c){
-  int tinhSHV= 0;
-  List l = a.values.toList();
-  for(int i=0;i<l.length;i++){
-    for(int j=0;j< l[i].length;j++){
-      if(l[i][j] == c){
-        tinhSHV++;
-      }
-    }
-  }
-  tinhSHV = b -tinhSHV;
-  return tinhSHV;
-}
 void main() {
   // khởi tạo đối tượng lớp
   Flutter classFlutter = new Flutter("Flutter",11,["A","B"]);
