@@ -169,7 +169,7 @@ void main() {
   String rdthv= "QWERTYUIOPASDFGHJKLZXCVBNM";
 
   // thêm học viên vào lớp
-  KTHV(hocvien, classFlutter.DSHV, "Fluter");
+  KTHV(hocvien, classFlutter.DSHV, "Flutter");
   KTHV(hocvien, classIos.DSHV, "ios");
   KTHV(hocvien, classAdroid.DSHV, "adroid");
   KTHV(hocvien, classWeb.DSHV, "web");
